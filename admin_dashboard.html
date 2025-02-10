@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Admin Dashboard - Clean City Dhaka</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body class="bg-green-200">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <i class="fas fa-leaf text-green-600 text-2xl mr-2"></i>
+            <span class="text-2xl font-bold text-green-600">Clean City Dhaka</span>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="text-gray-700">
+              <i class="fas fa-user-shield mr-2"></i>
+              <span>Admin Panel</span>
+            </div>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+              <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <!-- Stats Overview -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <div class="flex items-center">
+            <div class="p-3 bg-yellow-100 rounded-full">
+              <i class="fas fa-clock text-yellow-800 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-gray-500 text-sm">Pending Complaints</h3>
+              <p class="text-2xl font-bold text-gray-800">12</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <div class="flex items-center">
+            <div class="p-3 bg-blue-100 rounded-full">
+              <i class="fas fa-sync-alt text-blue-800 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-gray-500 text-sm">In Progress</h3>
+              <p class="text-2xl font-bold text-gray-800">8</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <div class="flex items-center">
+            <div class="p-3 bg-green-100 rounded-full">
+              <i class="fas fa-check-circle text-green-800 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-gray-500 text-sm">Completed</h3>
+              <p class="text-2xl font-bold text-gray-800">45</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Complaints Management -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-gray-800">
+            <i class="fas fa-tasks text-green-600 mr-2"></i> Complaints Management
+          </h2>
+          <div class="flex space-x-2">
+            <select class="border rounded-md px-3 py-2 focus:ring-green-500 focus:border-green-500">
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="progressing">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Search complaints..."
+              class="border rounded-md px-3 py-2 focus:ring-green-500 focus:border-green-500"
+            />
+          </div>
+        </div>
+
+        <!-- Complaints Table -->
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <!-- Sample Complaint Row -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">#1234</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center">
+                      <i class="fas fa-user text-gray-500"></i>
+                    </div>
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900">Karim Ahmed</div>
+                      <div class="text-sm text-gray-500">karim@example.com</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="text-sm text-gray-900">Garbage pile near market</div>
+                  <button class="text-blue-600 hover:text-blue-800 text-sm" onclick="viewDetails(1234)">
+                    View Details
+                  </button>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mirpur 10</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                    Pending
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2025-01-25</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button class="text-blue-600 hover:text-blue-900 mr-3" onclick="updateStatus(1234)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="text-green-600 hover:text-green-900" onclick="sendMessage(1234)">
+                    <i class="fas fa-comment"></i>
+                  </button>
+                </td>
+              </tr>
+              <!-- More complaint rows... -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
+          <div class="flex justify-between flex-1 sm:hidden">
+            <button class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+              Previous
+            </button>
+            <button class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+              Next
+            </button>
+          </div>
+          <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+            <div>
+              <p class="text-sm text-gray-700">
+                Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">65</span> results
+              </p>
+            </div>
+            <div>
+              <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+                <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  Previous
+                </button>
+                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  1
+                </button>
+                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  2
+                </button>
+                <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  3
+                </button>
+                <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  Next
+                </button>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Update Modal -->
+    <div id="statusModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3 text-center">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Update Complaint Status</h3>
+          <div class="mt-2 px-7 py-3">
+            <select class="w-full px-3 py-2 border rounded-md focus:ring-green-500 focus:border-green-500">
+              <option value="pending">Pending</option>
+              <option value="progressing">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <div class="items-center px-4 py-3">
+            <button id="updateStatusBtn" class="px-4 py-2 bg-green-600 text-white text-base font-medium rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+              Update Status
+            </button>
+            <button id="closeStatusModal" class="mt-3 px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="messageModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3 text-center">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">Send Message to User</h3>
+          <div class="mt-2 px-7 py-3">
+            <textarea
+              class="w-full px-3 py-2 border rounded-md focus:ring-green-500 focus:border-green-500"
+              rows="4"
+              placeholder="Type your message here..."
+            ></textarea>
+          </div>
+          <div class="items-center px-4 py-3">
+            <button id="sendMessageBtn" class="px-4 py-2 bg-green-600 text-white text-base font-medium rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+              Send Message
+            </button>
+            <button id="closeMessageModal" class="mt-3 px-4 py-2 bg-gray-200 text-gray-800 text-base font-medium rounded-md shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white mt-12">
+      <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4">
+              <i class="fas fa-leaf mr-2"></i> Clean City Dhaka
+            </h3>
+            <p class="text-green-200">Making Dhaka cleaner, one report at a time.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-green-200 hover:text-white"><i class="fas fa-chevron-right mr-2"></i>Dashboard</a></li>
+              <li><a href="/reports" class="text-green-200 hover:text-white"><i class="fas fa-chevron-right mr-2"></i>Reports</a></li>
+              <li><a href="/settings" class="text-green-200 hover:text-white"><i class="fas fa-chevron-right mr-2"></i>Settings</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Contact</h3>
+            <ul class="space-y-2">
+              <li class="text-green-200"><i class="fas fa-envelope mr-2"></i>admin@cleancitydhaka.com</li>
+              <li class="text-green-200"><i class="fas fa-phone mr-2"></i>+880 1234-567890</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">System Status</h3>
+            <div class="flex items-center text-green-200">
+              <i class="fas fa-circle text-green-400 mr-2"></i> All systems operational
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-green-700 mt-8 pt-8 text-center">
+          <p class="text-green-200">&copy; 2025 Clean City Dhaka. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Function to handle status updates
+      function updateStatus(complaintId) {
+        document.getElementById('statusModal').classList.remove('hidden');
+      }
+
+      // Function to handle sending messages
+      function sendMessage(complaintId) {
+        document.getElementById('messageModal').classList.remove('hidden');
+      }
+
+      // Function to view complaint details
+      function viewDetails(complaintId) {
+        // Implement view details functionality
+        alert('Viewing details for complaint #' + complaintId);
+      }
+
+      // Close modals
+      document.getElementById('closeStatusModal').onclick = function() {
+        document.getElementById('statusModal').classList.add('hidden');
+      }
+
+      document.getElementById('closeMessageModal').onclick = function() {
+        document.getElementById('messageModal').classList.add('hidden');
+      }
+
+      // Handle status update
+      document.getElementById('updateStatusBtn').onclick = function() {
+        // Implement status update logic
+        document.getElementById('statusModal').classList.add('hidden');
+      }
+
+      // Handle message send
+      document.getElementById('sendMessageBtn').onclick = function() {
+        // Implement message send logic
+        document.getElementById('messageModal').classList.add('hidden');
+      }
+    </script>
+  </body>
+</html>
