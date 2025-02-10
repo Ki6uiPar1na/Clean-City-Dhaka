@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Clean City Dhaka</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="script.js"></script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <span class="text-2xl font-bold text-green-600">Clean City Dhaka</span>
+          </div>
+          <div class="flex space-x-4">
+            <a href="/" class="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md font-medium">Home</a>
+            <a href="/leaderboard" class="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md font-medium">Leaderboard</a>
+            <button class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Login</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-pattern text-white py-20">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold mb-4">Clean City, Healthy Life</h1>
+        <p class="text-xl mb-8">Join us in making Dhaka a cleaner and healthier city for everyone</p>
+        <button class="bg-white text-green-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100">
+          Report Waste
+        </button>
+      </div>
+    </div>
+
+    <!-- Top Reporters Section -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="bg-white rounded-lg shadow-lg p-6 mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">Top Reporters</h2>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <!-- Top 5 reporters -->
+          <div class="bg-gray-50 p-4 rounded-lg text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span class="text-2xl font-bold text-green-600">1</span>
+            </div>
+            <h3 class="font-semibold">Karim Ahmed</h3>
+            <p class="text-green-600">150 points</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span class="text-2xl font-bold text-green-600">2</span>
+            </div>
+            <h3 class="font-semibold">Sarah Rahman</h3>
+            <p class="text-green-600">145 points</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span class="text-2xl font-bold text-green-600">3</span>
+            </div>
+            <h3 class="font-semibold">Mohammad Ali</h3>
+            <p class="text-green-600">140 points</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span class="text-2xl font-bold text-green-600">4</span>
+            </div>
+            <h3 class="font-semibold">Fatima Khan</h3>
+            <p class="text-green-600">135 points</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+              <span class="text-2xl font-bold text-green-600">5</span>
+            </div>
+            <h3 class="font-semibold">Rahim Uddin</h3>
+            <p class="text-green-600">130 points</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awareness Section -->
+      <div class="bg-white rounded-lg shadow-lg p-6 mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">Waste Management Awareness</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-4">
+            <h3 class="font-bold text-lg mb-2">Segregate Your Waste</h3>
+            <p class="text-gray-600">Learn how to properly separate your waste into recyclable and non-recyclable materials.</p>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-lg mb-2">Report Timely</h3>
+            <p class="text-gray-600">Quick reporting helps maintain cleanliness. Use our app or USSD service *123# to report waste.</p>
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-lg mb-2">Community Engagement</h3>
+            <p class="text-gray-600">Join community cleanup events and earn special rewards while making a difference.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learn More Section -->
+      <div class="bg-white rounded-lg shadow-lg p-6 mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">Learn More About Us</h2>
+        <div class="text-center">
+          <p class="text-gray-600 mb-4">We are a team of dedicated developers working to make Dhaka cleaner and healthier.</p>
+          <button class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700">
+            Meet Our Team
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+      <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-lg font-bold mb-4">Clean City Dhaka</h3>
+            <p class="text-gray-400">Making Dhaka cleaner, one report at a time.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
+              <li><a href="/leaderboard" class="text-gray-400 hover:text-white">Leaderboard</a></li>
+              <li><a href="/about" class="text-gray-400 hover:text-white">About Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Contact</h3>
+            <ul class="space-y-2">
+              <li class="text-gray-400">Email: info@cleancitydhaka.com</li>
+              <li class="text-gray-400">Phone: +880 1234-567890</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
+              <a href="#" class="text-gray-400 hover:text-white">Twitter</a>
+              <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+          <p class="text-gray-400">&copy; 2025 Clean City Dhaka. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
