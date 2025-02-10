@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Admin Login - Clean City Dhaka</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body class="bg-green-200">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <i class="fas fa-leaf text-green-600 text-2xl mr-2"></i>
+            <span class="text-2xl font-bold text-green-600">Clean City Dhaka</span>
+          </div>
+          <a href="/" class="text-gray-700 hover:text-green-600">
+            <i class="fas fa-home mr-1"></i> Back to Home
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+        <div class="text-center mb-8">
+          <i class="fas fa-user-shield text-green-600 text-4xl mb-4"></i>
+          <h2 class="text-3xl font-bold text-gray-800">Admin Login</h2>
+          <p class="mt-2 text-gray-600">Please sign in to access the admin dashboard</p>
+        </div>
+        <form class="space-y-6" action="admin.html" method="POST" onsubmit="return validateForm(event)">
+          <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">
+              <i class="fas fa-user mr-2"></i>Username
+            </label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              required
+              class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+              placeholder="Enter your username"
+            />
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">
+              <i class="fas fa-lock mr-2"></i>Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+              />
+              <label for="remember-me" class="ml-2 block text-sm text-gray-700">
+                Remember me
+              </label>
+            </div>
+
+            <div class="text-sm">
+              <a href="#" class="font-medium text-green-600 hover:text-green-500">
+                Forgot password?
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              <i class="fas fa-sign-in-alt mr-2"></i> Sign in
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white mt-12">
+      <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="text-center">
+          <p class="text-green-200">&copy; 2025 Clean City Dhaka. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function validateForm(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        // For demo purposes - in production, this should be handled securely on the server
+        if (username === 'admin' && password === 'admin123') {
+          window.location.href = 'admin.html';
+          return false;
+        } else {
+          alert('Invalid username or password');
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
