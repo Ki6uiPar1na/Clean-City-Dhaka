@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script type="module" src="script.js"></script>
   </head>
-  <body class="bg-green-200">
+  <body class="bg-green-500">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg">
       <div class="max-w-7xl mx-auto px-4">
@@ -19,11 +21,6 @@
             <span class="text-2xl font-bold text-green-600">Clean City Dhaka</span>
           </div>
           <div class="flex items-center space-x-4">
-            <div>
-              <a href="index.html" class="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md font-medium">
-                <i class="fas fa-home mr-1"></i> Home
-              </a>
-            </div>
             <div class="text-gray-700">
               <i class="fas fa-user-circle mr-2"></i>
               <span>Welcome, User</span>
@@ -45,6 +42,64 @@
           </h2>
           <div class="text-3xl font-bold text-green-600">
             <span id="userPoints">300</span> Points
+          </div>
+        </div>
+      </div>
+
+      <!-- Truck Tracking Section -->
+      <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">
+          <i class="fas fa-truck text-green-600 mr-2"></i> Waste Collection Trucks
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Map Container -->
+          <div class="md:col-span-2">
+            <div id="truckMap" class="h-96 rounded-lg border-2 border-gray-200"></div>
+          </div>
+          <!-- Truck List -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold mb-4">Nearby Trucks</h3>
+            <div class="space-y-4">
+              <!-- Truck Item -->
+              <div class="bg-white p-4 rounded-lg shadow">
+                <div class="flex items-center">
+                  <div class="bg-green-100 p-2 rounded-full">
+                    <i class="fas fa-truck text-green-600"></i>
+                  </div>
+                  <div class="ml-3">
+                    <h4 class="font-semibold">Truck #DH-1234</h4>
+                    <p class="text-sm text-gray-600">Mirpur 10</p>
+                    <p class="text-xs text-green-600">5 mins away</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Truck Item -->
+              <div class="bg-white p-4 rounded-lg shadow">
+                <div class="flex items-center">
+                  <div class="bg-green-100 p-2 rounded-full">
+                    <i class="fas fa-truck text-green-600"></i>
+                  </div>
+                  <div class="ml-3">
+                    <h4 class="font-semibold">Truck #DH-5678</h4>
+                    <p class="text-sm text-gray-600">Dhanmondi 27</p>
+                    <p class="text-xs text-green-600">10 mins away</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Truck Item -->
+              <div class="bg-white p-4 rounded-lg shadow">
+                <div class="flex items-center">
+                  <div class="bg-green-100 p-2 rounded-full">
+                    <i class="fas fa-truck text-green-600"></i>
+                  </div>
+                  <div class="ml-3">
+                    <h4 class="font-semibold">Truck #DH-9012</h4>
+                    <p class="text-sm text-gray-600">Gulshan 2</p>
+                    <p class="text-xs text-green-600">15 mins away</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -185,5 +240,47 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // Initialize the map
+      const map = L.map('truckMap').setView([23.8103, 90.4125], 12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Add truck markers (example data)
+      const trucks = [
+        { id: 'DH-1234', lat: 23.8103, lng: 90.4125, location: 'Mirpur 10', eta: '5 mins' },
+        { id: 'DH-5678', lat: 23.7925, lng: 90.4078, location: 'Dhanmondi 27', eta: '10 mins' },
+        { id: 'DH-9012', lat: 23.7937, lng: 90.4137, location: 'Gulshan 2', eta: '15 mins' }
+      ];
+
+      // Custom truck icon
+      const truckIcon = L.divIcon({
+        html: '<i class="fas fa-truck text-green-600 text-2xl"></i>',
+        className: 'truck-marker',
+        iconSize: [30, 30]
+      });
+
+      // Add markers to map
+      trucks.forEach(truck => {
+        L.marker([truck.lat, truck.lng], { icon: truckIcon })
+          .bindPopup(`
+            <b>Truck #${truck.id}</b><br>
+            Location: ${truck.location}<br>
+            ETA: ${truck.eta}
+          `)
+          .addTo(map);
+      });
+
+      // Update truck positions every 30 seconds (simulated)
+      setInterval(() => {
+        // In a real application, this would fetch real-time truck locations from a server
+        trucks.forEach(truck => {
+          truck.lat += (Math.random() - 0.5) * 0.001;
+          truck.lng += (Math.random() - 0.5) * 0.001;
+        });
+      }, 30000);
+    </script>
   </body>
 </html>
