@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Portal - Clean City</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-emerald-50">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="leaf" class="w-10 h-10 text-emerald-500"></i>
+                <h1 class="text-2xl font-bold text-emerald-700">Clean City</h1>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="dashboard.html" class="text-emerald-700 hover:text-emerald-500">Dashboard</a>
+                <a href="#" class="text-emerald-700 hover:text-emerald-500">Reports</a>
+                <button onclick="logout()" class="bg-emerald-500 text-white px-4 py-2 rounded-full hover:bg-emerald-600">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-12 px-4">
+        <div class="container mx-auto max-w-3xl">
+            <!-- Email Form Card -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <i data-lucide="mail" class="w-8 h-8 text-emerald-600"></i>
+                    <h2 class="text-2xl font-bold text-emerald-800">Send Email</h2>
+                </div>
+
+                <form id="emailForm" class="space-y-6">
+                    <!-- To Field -->
+                    <div>
+                        <label for="to" class="block text-sm font-medium text-emerald-700 mb-1">To</label>
+                        <input type="email" id="to" name="to" required
+                               class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                               placeholder="recipient@example.com">
+                    </div>
+
+                    <!-- Subject Field -->
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-emerald-700 mb-1">Subject</label>
+                        <input type="text" id="subject" name="subject" required
+                               class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                               placeholder="Email subject">
+                    </div>
+
+                    <!-- Message Field -->
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-emerald-700 mb-1">Message</label>
+                        <textarea id="message" name="message" rows="6" required
+                                  class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                                  placeholder="Type your message here..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button type="submit" 
+                                class="bg-emerald-500 text-white px-6 py-2 rounded-full hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 flex items-center gap-2">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            Send Email
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Status Messages -->
+            <div id="statusMessage" class="mt-4 hidden">
+                <div class="rounded-lg p-4"></div>
+            </div>
+
+            <!-- Recent Emails -->
+            <div class="mt-8 bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-xl font-semibold text-emerald-800 mb-4">Recent Emails</h3>
+                <div id="recentEmails" class="space-y-4">
+                    <!-- Recent emails will be populated here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Handle form submission
+        document.getElementById('emailForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                to: document.getElementById('to').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const response = await fetch('/api/send_email.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                
+                const statusMessage = document.getElementById('statusMessage');
+                statusMessage.classList.remove('hidden');
+                
+                if (data.success) {
+                    statusMessage.querySelector('div').className = 
+                        'rounded-lg p-4 bg-green-100 text-green-700';
+                    statusMessage.querySelector('div').textContent = 'Email sent successfully!';
+                    document.getElementById('emailForm').reset();
+                    fetchRecentEmails();
+                } else {
+                    statusMessage.querySelector('div').className = 
+                        'rounded-lg p-4 bg-red-100 text-red-700';
+                    statusMessage.querySelector('div').textContent = 
+                        'Failed to send email: ' + data.message;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                const statusMessage = document.getElementById('statusMessage');
+                statusMessage.classList.remove('hidden');
+                statusMessage.querySelector('div').className = 
+                    'rounded-lg p-4 bg-red-100 text-red-700';
+                statusMessage.querySelector('div').textContent = 
+                    'An error occurred while sending the email';
+            }
+        });
+
+        // Fetch recent emails
+        async function fetchRecentEmails() {
+            try {
+                const response = await fetch('/api/recent_emails.php');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const recentEmailsContainer = document.getElementById('recentEmails');
+                    recentEmailsContainer.innerHTML = data.emails.map(email => `
+                        <div class="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                            <i data-lucide="mail" class="w-5 h-5 text-emerald-500"></i>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <p class="font-medium text-emerald-800">${email.to}</p>
+                                        <p class="text-sm text-emerald-600">${email.subject}</p>
+                                    </div>
+                                    <span class="text-xs text-gray-500">
+                                        ${new Date(email.sent_at).toLocaleString()}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    // Reinitialize icons for new content
+                    lucide.createIcons();
+                }
+            } catch (error) {
+                console.error('Failed to fetch recent emails:', error);
+            }
+        }
+
+        function logout() {
+            window.location.href = 'login.html';
+        }
+
+        // Initial load of recent emails
+        fetchRecentEmails();
+    </script>
+</body>
+</html>
